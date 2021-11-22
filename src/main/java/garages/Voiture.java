@@ -27,10 +27,10 @@ public class Voiture {
      * @param g le garage où la voiture va stationner
      * @throws java.lang.Exception Si déjà dans un garage
      */
-    public void entreAuGarage(Garage g) throws Exception {
+    public void entreAuGarage(Garage g) throws GarageException {
         // Et si la voiture est déjà dans un garage ?
         if (estDansUnGarage()) {
-            throw new Exception("Est deja dans un garage");
+            throw new GarageException("Est deja dans un garage");
         }
         Stationnement s = new Stationnement(this, g);
         myStationnements.add(s);
@@ -42,13 +42,13 @@ public class Voiture {
      *
      * @throws java.lang.Exception si la voiture n'est pas dans un garage
      */
-    public void sortDuGarage() throws Exception {
+    public void sortDuGarage() throws GarageException {
         // Trouver le dernier stationnement de la voiture
         // Terminer ce stationnement
         if (estDansUnGarage()) {
             myStationnements.get(myStationnements.size() - 1).terminer();
         } else {
-            throw new Exception("N'Est pas dans un garage");
+            throw new GarageException("N'Est pas dans un garage");
         }
     }
 
